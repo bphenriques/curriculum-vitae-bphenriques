@@ -52,6 +52,9 @@
 \def\Youtube{{\FA \faYoutube }}
 \def\Mobile{{\FA \faMobile}}
 
+\usepackage{graphicx}
+\graphicspath{ {.} }
+
 
 %----------------------------------------------------------------------------------------
 %	LAST UPDATED COMMAND
