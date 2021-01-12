@@ -18,6 +18,7 @@ jobs:
           args: -xelatex -latexoption=-file-line-error -latexoption=-interaction=nonstopmode
 
       - name: Releasing
+        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Provided by Actions.
