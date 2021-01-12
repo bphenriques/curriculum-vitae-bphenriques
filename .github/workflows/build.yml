@@ -19,6 +19,8 @@ jobs:
 
       - name: Releasing
         uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Provided by Actions.
         with:
           tag_name: latest
           release_name: latest
@@ -27,6 +29,8 @@ jobs:
 
       - name: Upload PDF
         uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Provided by Actions.
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./main.pdf
