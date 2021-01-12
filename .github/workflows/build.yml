@@ -16,3 +16,20 @@ jobs:
         with:
           root_file: main.tex
           args: -xelatex -latexoption=-file-line-error -latexoption=-interaction=nonstopmode
+
+      - name: Releasing
+        uses: actions/create-release@v1
+        with:
+          tag_name: latest
+          release_name: latest
+          draft: false
+          prerelease: false
+
+      - name: Upload PDF
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./main.pdf
+          asset_name: main.pdf
+          asset_content_type: pdf
+
