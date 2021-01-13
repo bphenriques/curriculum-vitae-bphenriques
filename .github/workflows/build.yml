@@ -1,8 +1,8 @@
 name: Build
 on:
   push:
-    branches:
-      - master
+    tags:
+      - 'v*'
 
 jobs:
   build-pdf:
@@ -14,8 +14,12 @@ jobs:
       - name: Compile LaTex
         uses: dante-ev/latex-action@v0.2.0
         with:
-          root_file: main.tex
+          root_file: bruno-henriques-cv.tex
           args: -xelatex -latexoption=-file-line-error -latexoption=-interaction=nonstopmode
+
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
 
       - name: Releasing
         id: create_release
@@ -23,8 +27,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Provided by Actions.
         with:
-          tag_name: latest
-          release_name: latest
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
 
@@ -34,7 +38,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Provided by Actions.
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./main.pdf
-          asset_name: main.pdf
+          asset_path: ./bruno-henriques-cv.pdf
+          asset_name: bruno-henriques-cv.pdf
           asset_content_type: pdf
 
