@@ -1,6 +1,8 @@
 name: Build
 on:
   push:
+    branches:
+      - master
     tags:
       - 'v*'
 
@@ -17,11 +19,7 @@ jobs:
           root_file: bruno-henriques-cv.tex
           args: -xelatex -latexoption=-file-line-error -latexoption=-interaction=nonstopmode
 
-      - name: Get current date
-        id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
-
-      - name: Releasing
+      - name: Release
         id: create_release
         uses: actions/create-release@v1
         env:
@@ -32,7 +30,7 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: Upload PDF
+      - name: Upload PDF to release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Provided by Actions.
