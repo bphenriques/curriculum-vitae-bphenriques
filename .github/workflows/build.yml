@@ -13,7 +13,7 @@ jobs:
      
       - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d %H%m')"
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       
       - name: Compile LaTex
         uses: dante-ev/latex-action@v0.2.0
