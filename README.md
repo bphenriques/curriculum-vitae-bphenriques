@@ -4,7 +4,3 @@
 # Curriculum Vitae
 
 Based on [posquit0/Awesome-CV](https://github.com/posquit0/Awesome-CV) curriculum.
-
-# CI/CD
-
-I work over Overleaf (for now). Github Action is configured to build the PDF version automatically which removes the need to upload it manually. 
